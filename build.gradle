@@ -66,7 +66,7 @@ publishing {
             from components.java
             pom {
                 name = 'alkemy'
-                description = 'A test framework based on Selenium and Kotlin'
+                description = 'A browser automation framework written in Kotlin and based on Selenium and Kotest'
                 url = 'https://github.com/cosmin-marginean/alkemy'
                 licenses {
                     license {
