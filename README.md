@@ -3,7 +3,7 @@
 Alkemy is a browser automation framework written in [Kotlin](https://kotlinlang.org/) and based on [Selenium](https://www.selenium.dev/) and [Kotest](https://kotest.io/).
 The objective is to provide more fluent definitions for Selenium tests, using a functional style and Kotlin extension functions. Alkemy currently supports Chrome and Firefox browsers. 
 
-For detailed documentation please check the [project wiki](todo).
+Please see Documentation section below for complete details.
 
 For a full working example please check the [sample-project](https://github.com/cosmin-marginean/alkemy/tree/main/sample-project) in this repository.
 
@@ -68,3 +68,6 @@ class LoginPage(context: AlkemyContext) : Page(context, "/login") {
 
 class SecurePage(context: AlkemyContext) : Page(context, "/secure")
 ```
+
+## Documentation
+* [Configuration reference](https://github.com/cosmin-marginean/alkemy/wiki/Alkemy-Configuration-Reference)
