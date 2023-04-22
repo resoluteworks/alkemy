@@ -7,13 +7,13 @@ import org.openqa.selenium.WebDriver
 data class AlkemyConfig(
     val browser: Browser = Browser.valueOf(System.getProperty("alkemy.browser", "chrome").trim().uppercase()),
     val baseUrl: String = System.getProperty("alkemy.baseUrl"),
+    val incognito: Boolean = System.getProperty("alkemy.incognito", "true").toBoolean(),
+    val maximize: Boolean = System.getProperty("alkemy.maximize", "true").toBoolean(),
     val headless: Boolean = System.getProperty("alkemy.headless", "false").toBoolean(),
     val windowWidth: Int = System.getProperty("alkemy.windowWidth", "0").toInt(),
     val windowHeight: Int = System.getProperty("alkemy.windowHeight", "0").toInt(),
-    val maximize: Boolean = System.getProperty("alkemy.maximize", "true").toBoolean(),
     val implicitWaitMs: Long = System.getProperty("alkemy.implicitWaitMs", "5000").toLong(),
     val testSelectorAttribute: String = System.getProperty("alkemy.testSelectorAttribute", "data-test-selector"),
-    val incognito: Boolean = System.getProperty("alkemy.incognito", "true").toBoolean(),
     val reportConfig: ReportConfig = ReportConfig(),
 ) {
 
