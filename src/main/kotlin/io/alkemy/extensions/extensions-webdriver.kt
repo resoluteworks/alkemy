@@ -21,6 +21,10 @@ fun WebDriver.find(cssSelector: String): WebElement {
     return findElement(By.cssSelector(cssSelector))
 }
 
+fun WebDriver.findElements(cssSelector: String): List<WebElement> {
+    return findElements(By.cssSelector(cssSelector))
+}
+
 fun WebDriver.click(cssSelector: String): WebDriver {
     find(cssSelector).click()
     return this

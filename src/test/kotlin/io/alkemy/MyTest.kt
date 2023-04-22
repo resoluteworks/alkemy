@@ -2,9 +2,13 @@ package io.alkemy
 
 import io.alkemy.assertions.shouldHaveText
 import io.alkemy.extensions.fillForm
+import io.alkemy.extensions.find
+import io.alkemy.extensions.findElements
 import io.alkemy.extensions.submit
 import io.alkemy.pom.Page
 import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.collections.shouldHaveSize
+import io.kotest.matchers.string.shouldContain
 
 class MyTest(val context: AlkemyContext) : StringSpec({
 
@@ -38,6 +42,12 @@ class MyTest(val context: AlkemyContext) : StringSpec({
             .goTo<LoginPage>()
             .login("tomsmith", "SuperSecretPassword!")
         securePage shouldHaveText "Welcome to the Secure Area"
+    }
+
+    "using native Kotest assertions" {
+        val driver = context.get("/login")
+        driver.findElements("input") shouldHaveSize 2
+        driver.find("h2").text shouldContain "Login Page"
     }
 })
 
