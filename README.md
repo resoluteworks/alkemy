@@ -19,8 +19,10 @@ used against `String` to perform lookups and assertions.
 Alternatively, similar extensions are available for `WebDriver` and `WebElement`, including
 helper methods like `fillForm`, `typeIn` and assertions like `shouldBeVisible`, `shoulHaveClass`, etc.
 
-Lastly, Alkemy provides a basic framework for Page Object Model approaches. This includes all the extensions and
+Alkemy also provides a very basic framework for Page Object Model approaches. This includes all the extensions and
 assertions available for `WebDriver`.
+
+Lastly, as expected, any of the Kotest assertions can be used natively in combination with any of the Alkemy/Selenium objects.
 
 ```kotlin
 class MyTest(val context: AlkemyContext) : StringSpec({
@@ -55,6 +57,12 @@ class MyTest(val context: AlkemyContext) : StringSpec({
             .goTo<LoginPage>()
             .login("tomsmith", "SuperSecretPassword!")
         securePage shouldHaveText "Welcome to the Secure Area"
+    }
+    
+    "using native Kotest assertions" {
+        val driver = context.get("/login")
+        driver.findElements("input") shouldHaveSize 2
+        driver.find("h2").text shouldContain "Login Page"
     }
 })
 
