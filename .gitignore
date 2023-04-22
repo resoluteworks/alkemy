@@ -1,0 +1,7 @@
+.gradle
+.idea
+build
+out
+etc
+Play.kt
+.DS_Store

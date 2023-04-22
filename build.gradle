@@ -1,0 +1,105 @@
+plugins {
+    id "java-library"
+    id "maven-publish"
+    id "signing"
+    id "com.glovoapp.semantic-versioning" version "1.1.10"
+    id "org.jetbrains.kotlin.jvm" version "${kotlinVersion}"
+    id "org.jetbrains.dokka" version "1.7.20"
+}
+
+group = "io.resoluteworks"
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+javadocJar {
+    dependsOn(dokkaHtml)
+    archiveClassifier.set("javadoc")
+    from(dokkaHtml.outputDirectory)
+}
+
+dokkaHtml {
+    outputDirectory.set(file("docs/dokka/${project.name}"))
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
+    implementation "io.kotest:kotest-assertions-core:${kotestVersion}"
+    implementation "io.kotest:kotest-property:${kotestVersion}"
+    implementation "io.kotest:kotest-runner-junit5-jvm:${kotestVersion}"
+    implementation "org.seleniumhq.selenium:selenium-api:${seleniumVersion}"
+    implementation "org.seleniumhq.selenium:selenium-chrome-driver:${seleniumVersion}"
+    implementation "org.seleniumhq.selenium:selenium-firefox-driver:${seleniumVersion}"
+    implementation "org.seleniumhq.selenium:selenium-support:${seleniumVersion}"
+    implementation "org.slf4j:slf4j-api:1.7.36"
+    implementation "com.aventstack:extentreports:5.0.9"
+
+//    testImplementation "ch.qos.logback:logback-classic:1.4.5"
+}
+
+kotlin {
+    jvmToolchain(17)
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        showStandardStreams = true
+    }
+    systemProperty "webdriver.chrome.driver", System.getProperty("webDriver", "./chromedriver")
+    systemProperty "kotest.framework.parallelism", "1"
+
+    systemProperty "alkemy.browser", "chrome"
+    systemProperty "alkemy.baseUrl", "https://the-internet.herokuapp.com"
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            pom {
+                name = 'alkemy'
+                description = 'A test framework based on Selenium and Kotlin'
+                url = 'https://github.com/cosmin-marginean/alkemy'
+                licenses {
+                    license {
+                        name = 'Apache License 2.0'
+                        url = 'https://github.com/cosmin-marginean/alkemy/blob/main/LICENSE'
+                        distribution = 'repo'
+                    }
+                }
+                scm {
+                    url = 'https://github.com/cosmin-marginean/alkemy'
+                    connection = 'scm:git:git://github.com/cosmin-marginean/alkemy.git'
+                    developerConnection = 'scm:git:ssh://git@github.com:cosmin-marginean/alkemy.git'
+                }
+                developers {
+                    developer {
+                        name = 'Cosmin Marginean'
+                    }
+                }
+            }
+        }
+    }
+    repositories {
+        mavenLocal()
+//        maven {
+//            url = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+//            credentials {
+//                username = "${NEXUS_USERNAME}"
+//                password = "${NEXUS_PASSWORD}"
+//            }
+//        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}

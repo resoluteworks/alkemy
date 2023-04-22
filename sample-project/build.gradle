@@ -1,0 +1,43 @@
+plugins {
+    id "org.jetbrains.kotlin.jvm" version "${kotlinVersion}"
+}
+
+group = "io.resoluteworks"
+version = "1.0"
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation "io.resoluteworks:alkemy:${alkemyVersion}"
+
+    testImplementation "io.kotest:kotest-assertions-core:${kotestVersion}"
+    testImplementation "io.kotest:kotest-property:${kotestVersion}"
+    testImplementation "io.kotest:kotest-runner-junit5-jvm:${kotestVersion}"
+    testImplementation "org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}"
+    testImplementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
+    testImplementation "org.seleniumhq.selenium:selenium-api:${seleniumVersion}"
+    testImplementation "org.slf4j:slf4j-api:1.7.36"
+    testImplementation "ch.qos.logback:logback-classic:1.4.5"
+}
+
+kotlin {
+    jvmToolchain(17)
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        showStandardStreams = true
+    }
+    systemProperty "webdriver.chrome.driver", System.getProperty("webDriver", "../chromedriver")
+    systemProperty "kotest.framework.parallelism", "4"
+
+    systemProperty "alkemy.browser", "chrome"
+    systemProperty "alkemy.baseUrl", "https://the-internet.herokuapp.com"
+//    systemProperty "alkemy.headless", "true"
+//    systemProperty "alkemy.windowWidth", "800"
+//    systemProperty "alkemy.windowHeight", "600"
+}
