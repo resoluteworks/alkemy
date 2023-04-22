@@ -41,7 +41,7 @@ dependencies {
     implementation "org.slf4j:slf4j-api:1.7.36"
     implementation "com.aventstack:extentreports:5.0.9"
 
-//    testImplementation "ch.qos.logback:logback-classic:1.4.5"
+    testImplementation "ch.qos.logback:logback-classic:1.4.5"
 }
 
 kotlin {
@@ -90,13 +90,13 @@ publishing {
     }
     repositories {
         mavenLocal()
-//        maven {
-//            url = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
-//            credentials {
-//                username = "${NEXUS_USERNAME}"
-//                password = "${NEXUS_PASSWORD}"
-//            }
-//        }
+        maven {
+            url = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+            credentials {
+                username = "${NEXUS_USERNAME}"
+                password = "${NEXUS_PASSWORD}"
+            }
+        }
     }
 }
 
