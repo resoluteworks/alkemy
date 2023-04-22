@@ -22,7 +22,7 @@ helper methods like `fillForm`, `typeIn` and assertions like `shouldBeVisible`, 
 Alkemy also provides a very basic framework for Page Object Model approaches. This includes all the extensions and
 assertions available for `WebDriver`.
 
-Lastly, as expected, any of the Kotest assertions can be used natively in combination with any of the Alkemy/Selenium objects.
+Lastly, any Kotest assertions can be used natively in combination with the Alkemy or Selenium objects.
 
 ```kotlin
 class MyTest(val context: AlkemyContext) : StringSpec({
