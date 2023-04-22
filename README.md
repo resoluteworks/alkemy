@@ -1,5 +1,7 @@
 # Alkemy
 
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/cosmin-marginean/alkemy)
+
 Alkemy is a browser automation framework written in [Kotlin](https://kotlinlang.org/) and based on [Selenium](https://www.selenium.dev/) and [Kotest](https://kotest.io/).
 The objective is to provide more fluent definitions for Selenium tests, using a functional style and Kotlin extension functions. Alkemy currently supports Chrome and Firefox browsers. 
 
