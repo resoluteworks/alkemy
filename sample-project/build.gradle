@@ -6,7 +6,6 @@ group = "io.resoluteworks"
 version = "1.0"
 
 repositories {
-    mavenLocal()
     mavenCentral()
 }
 
@@ -32,7 +31,7 @@ test {
     testLogging {
         showStandardStreams = true
     }
-    systemProperty "webdriver.chrome.driver", System.getProperty("webDriver", "../chromedriver")
+    systemProperty "webdriver.chrome.driver", "./chromedriver"
     systemProperty "kotest.framework.parallelism", "4"
 
     systemProperty "alkemy.browser", "chrome"

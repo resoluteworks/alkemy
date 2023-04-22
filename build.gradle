@@ -53,7 +53,7 @@ test {
     testLogging {
         showStandardStreams = true
     }
-    systemProperty "webdriver.chrome.driver", System.getProperty("webDriver", "./chromedriver")
+    systemProperty "webdriver.chrome.driver", "./chromedriver"
     systemProperty "kotest.framework.parallelism", "1"
 
     systemProperty "alkemy.browser", "chrome"
