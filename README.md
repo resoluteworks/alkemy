@@ -68,6 +68,3 @@ class LoginPage(context: AlkemyContext) : Page(context, "/login") {
 
 class SecurePage(context: AlkemyContext) : Page(context, "/secure")
 ```
-
-## Documentation
-* [Configuration reference](https://github.com/cosmin-marginean/alkemy/wiki/Alkemy-Configuration-Reference)
