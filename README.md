@@ -1,6 +1,7 @@
 # Alkemy
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/cosmin-marginean/alkemy)
+![Coveralls](https://img.shields.io/coverallsCoverage/github/cosmin-marginean/alkemy)
 
 <img width="476" alt="2023-04-22_20-34-31" src="https://user-images.githubusercontent.com/2995576/233803514-7bc23cc4-eab0-40a1-8550-82305ebecfed.png">
 

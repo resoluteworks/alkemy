@@ -5,6 +5,8 @@ plugins {
     id "com.glovoapp.semantic-versioning" version "1.1.10"
     id "org.jetbrains.kotlin.jvm" version "${kotlinVersion}"
     id "org.jetbrains.dokka" version "1.7.20"
+    id "jacoco"
+    id "com.github.nbaztec.coveralls-jacoco" version "1.2.15"
 }
 
 group = "io.resoluteworks"
@@ -112,4 +114,21 @@ tasks.withType(PublishToMavenRepository) {
     onlyIf("Publishing to Maven Central") {
         predicate.get()
     }
+}
+
+jacocoTestReport {
+    reports {
+        html.enabled = true
+        xml.enabled = true
+        xml.setDestination(file("${buildDir}/reports/jacoco/test/jacocoTestReport.xml"))
+    }
+}
+
+task fullBuild {
+    dependsOn 'clean'
+    dependsOn 'test'
+    dependsOn 'jacocoTestReport'
+    dependsOn 'coverallsJacoco'
+    tasks.findByName('jacocoTestReport').mustRunAfter 'test'
+    tasks.findByName('coverallsJacoco').mustRunAfter 'jacocoTestReport'
 }
