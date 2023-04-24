@@ -10,6 +10,7 @@ class ExampleTest(val context: AlkemyContext) : StringSpec({
     "login with fillForm" {
         context.apply {
             get("/login")
+            webDriver
                 .fillForm(
                     "username" to "tomsmith",
                     "password" to "SuperSecretPassword!"
