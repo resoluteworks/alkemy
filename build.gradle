@@ -56,7 +56,7 @@ test {
         showStandardStreams = true
     }
     systemProperty "webdriver.chrome.driver", "./chromedriver"
-    systemProperty "kotest.framework.parallelism", "1"
+    systemProperty "kotest.framework.parallelism", "4"
 
     systemProperty "alkemy.browser", "chrome"
     systemProperty "alkemy.baseUrl", "https://the-internet.herokuapp.com"
@@ -114,13 +114,13 @@ jacocoTestReport {
     }
 }
 
-task buildAndPublish {
+tasks.withType(PublishToMavenRepository) { it.dependsOn test }
+
+task fullBuild {
     dependsOn 'clean'
     dependsOn 'test'
     dependsOn 'jacocoTestReport'
     dependsOn 'coverallsJacoco'
-    dependsOn 'publish'
     tasks.findByName('jacocoTestReport').mustRunAfter 'test'
     tasks.findByName('coverallsJacoco').mustRunAfter 'jacocoTestReport'
-    tasks.findByName('publish').mustRunAfter 'coverallsJacoco'
 }
