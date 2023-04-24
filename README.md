@@ -23,14 +23,6 @@ testImplementation "io.resoluteworks:alkemy:${alkemyVersion}"
 Alkemy enables a variety of approaches for writing Selenium tests in Kotlin. A set of extensions functions can be
 used against `String` to perform lookups and assertions.
 
-Alternatively, similar extensions are available for `WebDriver` and `WebElement`, including
-helper methods like `fillForm`, `typeIn` and assertions like `shouldBeVisible`, `shoulHaveClass`, etc.
-
-Alkemy also provides a very basic framework for Page Object Model approaches. This includes all the extensions and
-assertions available for `WebDriver`.
-
-Lastly, any Kotest assertions can be used natively in combination with the Alkemy or Selenium objects.
-
 ```kotlin
 class MyTest(val context: AlkemyContext) : StringSpec({
 
@@ -49,7 +41,13 @@ class MyTest(val context: AlkemyContext) : StringSpec({
             "$form input[type='text']".shouldBeEnabled(maxWaitSeconds = 10)
         }
     }
+```
 
+
+Alternatively, similar extensions are available for `WebDriver` and `WebElement`, including
+helper methods like `fillForm`, `typeIn` and assertions like `shouldBeVisible`, `shoulHaveClass`, etc.
+
+```kotlin
     "login with fillForm" {
         context.get("/login")
             .fillForm(
@@ -58,7 +56,11 @@ class MyTest(val context: AlkemyContext) : StringSpec({
             )
             .submit() shouldHaveText "Welcome to the Secure Area"
     }
+```
 
+Alkemy also provides a very basic framework for Page Object Model approaches. This includes all the extensions and
+assertions available for `WebDriver`.
+```kotlin
     "login with page object model" {
         val securePage = context
             .goTo<LoginPage>()
@@ -66,6 +68,21 @@ class MyTest(val context: AlkemyContext) : StringSpec({
         securePage shouldHaveText "Welcome to the Secure Area"
     }
     
+    ...
+class LoginPage(context: AlkemyContext) : Page(context, "/login") {
+    fun login(username: String, password: String): SecurePage {
+        fillForm("username" to username, "password" to password)
+            .submit()
+        return next<SecurePage>()
+    }
+}
+
+class SecurePage(context: AlkemyContext) : Page(context, "/secure")
+```
+
+Lastly, any Kotest assertions can be used natively in combination with the Alkemy or Selenium objects.
+
+```kotlin
     "using native Kotest assertions" {
         val driver = context.get("/login")
         driver.findElements("input") shouldHaveSize 2
