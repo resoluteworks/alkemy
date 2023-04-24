@@ -65,15 +65,6 @@ Alkemy also provides a very basic framework for Page Object Model approaches. Th
 assertions available for `WebDriver`.
 
 ```kotlin
-    "login with page object model" {
-        val securePage = context
-            .goTo<LoginPage>()
-            .login("tomsmith", "SuperSecretPassword!")
-        securePage shouldHaveText "Welcome to the Secure Area"
-    }
-    
-    ...
-    
 class LoginPage(context: AlkemyContext) : Page(context, "/login") {
     fun login(username: String, password: String): SecurePage {
         fillForm("username" to username, "password" to password)
@@ -83,6 +74,15 @@ class LoginPage(context: AlkemyContext) : Page(context, "/login") {
 }
 
 class SecurePage(context: AlkemyContext) : Page(context, "/secure")
+
+
+"login with page object model" {
+    val securePage = context
+        .goTo<LoginPage>()
+        .login("tomsmith", "SuperSecretPassword!")
+    securePage shouldHaveText "Welcome to the Secure Area"
+}
+    
 ```
 
 
