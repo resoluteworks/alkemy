@@ -94,17 +94,6 @@ Lastly, any Kotest assertions can be used natively in combination with the Alkem
         driver.findElements("input") shouldHaveSize 2
         driver.find("h2").text shouldContain "Login Page"
     }
-})
-
-class LoginPage(context: AlkemyContext) : Page(context, "/login") {
-    fun login(username: String, password: String): SecurePage {
-        fillForm("username" to username, "password" to password)
-            .submit()
-        return next<SecurePage>()
-    }
-}
-
-class SecurePage(context: AlkemyContext) : Page(context, "/secure")
 ```
 
 
