@@ -11,7 +11,7 @@ The objective is to provide more fluent definitions for Selenium tests, using a 
 Some of the feature highlights are [extension functions and assertions](https://github.com/cosmin-marginean/alkemy#writing-tests) for Strings, WebDriver and WebElement, [automatic report generation](https://github.com/cosmin-marginean/alkemy/wiki/Reports-and-screenshots), and [running multiple browsers in parallel](https://github.com/cosmin-marginean/alkemy/wiki/Running-tests-in-parallel).
 
 * See [Documentation](https://github.com/cosmin-marginean/alkemy/wiki/Alkemy-Documentation) for further information.
-* For various example tests please check the tests [here](https://github.com/cosmin-marginean/alkemy/tree/main/src/test/kotlin/io/alkemy/examples).
+* Various examples tests can be found [here](https://github.com/cosmin-marginean/alkemy/tree/main/src/test/kotlin/io/alkemy/examples).
 * For a full working project setup please check the [sample-project](https://github.com/cosmin-marginean/alkemy/tree/main/sample-project).
 
 ## Dependency
