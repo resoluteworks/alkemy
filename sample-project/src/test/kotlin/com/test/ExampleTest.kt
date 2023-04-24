@@ -15,7 +15,7 @@ class ExampleTest(val context: AlkemyContext) : StringSpec({
                     "password" to "SuperSecretPassword!"
                 )
                 .submit()
-            
+
             "body" shouldHaveText "Welcome to the Secure Area"
         }
     }

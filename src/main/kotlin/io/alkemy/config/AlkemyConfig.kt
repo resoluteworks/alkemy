@@ -13,8 +13,7 @@ data class AlkemyConfig(
     val windowWidth: Int = System.getProperty("alkemy.windowWidth", "0").toInt(),
     val windowHeight: Int = System.getProperty("alkemy.windowHeight", "0").toInt(),
     val implicitWaitMs: Long = System.getProperty("alkemy.implicitWaitMs", "5000").toLong(),
-    val testSelectorAttribute: String = System.getProperty("alkemy.testSelectorAttribute", "data-test-selector"),
-    val reportConfig: ReportConfig = ReportConfig(),
+    val testSelectorAttribute: String = System.getProperty("alkemy.testSelectorAttribute", "data-test-selector")
 ) {
 
     fun newWebDriver(): WebDriver {

@@ -2,6 +2,7 @@ package io.alkemy.reports
 
 import com.aventstack.extentreports.MediaEntityBuilder
 import io.alkemy.AlkemyContext
+import io.alkemy.config.ReportConfig
 import io.kotest.core.listeners.AfterTestListener
 import io.kotest.core.listeners.BeforeTestListener
 import io.kotest.core.test.TestCase
@@ -16,7 +17,7 @@ class AlkemyReport(
 
     fun screenshot(testCase: TestCase, description: String? = null, failure: Boolean = false) {
         val clsName = testCase.spec::class.simpleName!!
-        val parentDir = File(context.config.reportConfig.screenshotDir, clsName)
+        val parentDir = File(ReportConfig.screenshotDir, clsName)
         parentDir.mkdirs()
         val fileName = testCase.name.testName.replace(" ", "-") + "-" + System.currentTimeMillis() + ".png"
         val pngFile = File(parentDir, fileName)

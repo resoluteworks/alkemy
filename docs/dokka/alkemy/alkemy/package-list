@@ -27,7 +27,7 @@ $dokka.location:io.alkemy.config////PointingToDeclaration/alkemy/io.alkemy.conf
 $dokka.location:io.alkemy.config/AlkemyConfig.Companion///PointingToDeclaration/alkemy/io.alkemy.config/-alkemy-config/-companion/index.html
 $dokka.location:io.alkemy.config/AlkemyConfig.Companion/fromSystemProperties/#/PointingToDeclaration/alkemy/io.alkemy.config/-alkemy-config/-companion/from-system-properties.html
 $dokka.location:io.alkemy.config/AlkemyConfig///PointingToDeclaration/alkemy/io.alkemy.config/-alkemy-config/index.html
-$dokka.location:io.alkemy.config/AlkemyConfig/AlkemyConfig/#io.alkemy.config.Browser#kotlin.String#kotlin.Boolean#kotlin.Boolean#kotlin.Boolean#kotlin.Int#kotlin.Int#kotlin.Long#kotlin.String#io.alkemy.config.ReportConfig/PointingToDeclaration/alkemy/io.alkemy.config/-alkemy-config/-alkemy-config.html
+$dokka.location:io.alkemy.config/AlkemyConfig/AlkemyConfig/#io.alkemy.config.Browser#kotlin.String#kotlin.Boolean#kotlin.Boolean#kotlin.Boolean#kotlin.Int#kotlin.Int#kotlin.Long#kotlin.String/PointingToDeclaration/alkemy/io.alkemy.config/-alkemy-config/-alkemy-config.html
 $dokka.location:io.alkemy.config/AlkemyConfig/baseUrl/#/PointingToDeclaration/alkemy/io.alkemy.config/-alkemy-config/base-url.html
 $dokka.location:io.alkemy.config/AlkemyConfig/browser/#/PointingToDeclaration/alkemy/io.alkemy.config/-alkemy-config/browser.html
 $dokka.location:io.alkemy.config/AlkemyConfig/headless/#/PointingToDeclaration/alkemy/io.alkemy.config/-alkemy-config/headless.html
@@ -35,7 +35,6 @@ $dokka.location:io.alkemy.config/AlkemyConfig/implicitWaitMs/#/PointingToDeclara
 $dokka.location:io.alkemy.config/AlkemyConfig/incognito/#/PointingToDeclaration/alkemy/io.alkemy.config/-alkemy-config/incognito.html
 $dokka.location:io.alkemy.config/AlkemyConfig/maximize/#/PointingToDeclaration/alkemy/io.alkemy.config/-alkemy-config/maximize.html
 $dokka.location:io.alkemy.config/AlkemyConfig/newWebDriver/#/PointingToDeclaration/alkemy/io.alkemy.config/-alkemy-config/new-web-driver.html
-$dokka.location:io.alkemy.config/AlkemyConfig/reportConfig/#/PointingToDeclaration/alkemy/io.alkemy.config/-alkemy-config/report-config.html
 $dokka.location:io.alkemy.config/AlkemyConfig/testSelectorAttribute/#/PointingToDeclaration/alkemy/io.alkemy.config/-alkemy-config/test-selector-attribute.html
 $dokka.location:io.alkemy.config/AlkemyConfig/windowHeight/#/PointingToDeclaration/alkemy/io.alkemy.config/-alkemy-config/window-height.html
 $dokka.location:io.alkemy.config/AlkemyConfig/windowWidth/#/PointingToDeclaration/alkemy/io.alkemy.config/-alkemy-config/window-width.html
@@ -45,7 +44,6 @@ $dokka.location:io.alkemy.config/Browser///PointingToDeclaration/alkemy/io.alke
 $dokka.location:io.alkemy.config/Browser/valueOf/#kotlin.String/PointingToDeclaration/alkemy/io.alkemy.config/-browser/value-of.html
 $dokka.location:io.alkemy.config/Browser/values/#/PointingToDeclaration/alkemy/io.alkemy.config/-browser/values.html
 $dokka.location:io.alkemy.config/ReportConfig///PointingToDeclaration/alkemy/io.alkemy.config/-report-config/index.html
-$dokka.location:io.alkemy.config/ReportConfig/ReportConfig/#kotlin.Boolean#kotlin.String#kotlin.String/PointingToDeclaration/alkemy/io.alkemy.config/-report-config/-report-config.html
 $dokka.location:io.alkemy.config/ReportConfig/enabled/#/PointingToDeclaration/alkemy/io.alkemy.config/-report-config/enabled.html
 $dokka.location:io.alkemy.config/ReportConfig/htmlReportFile/#/PointingToDeclaration/alkemy/io.alkemy.config/-report-config/html-report-file.html
 $dokka.location:io.alkemy.config/ReportConfig/screenshotDir/#/PointingToDeclaration/alkemy/io.alkemy.config/-report-config/screenshot-dir.html

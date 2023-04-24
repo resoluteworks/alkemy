@@ -3,6 +3,7 @@ package io.alkemy.reports
 import com.aventstack.extentreports.ExtentReports
 import com.aventstack.extentreports.ExtentTest
 import com.aventstack.extentreports.reporter.ExtentSparkReporter
+import io.alkemy.config.ReportConfig
 import io.kotest.core.listeners.AfterProjectListener
 import io.kotest.core.listeners.BeforeProjectListener
 import io.kotest.core.listeners.PrepareSpecListener
@@ -22,8 +23,7 @@ object ReportContext : BeforeProjectListener, AfterProjectListener, PrepareSpecL
 
     override suspend fun beforeProject() {
         extent = ExtentReports()
-        //TODO: This is a design issue due to the fact that we can't inject the config in this listener
-        val extentSparkReporter = ExtentSparkReporter("build/reports/extent-report.html")
+        val extentSparkReporter = ExtentSparkReporter(ReportConfig.htmlReportFile)
         extent.attachReporter(extentSparkReporter)
     }
 
