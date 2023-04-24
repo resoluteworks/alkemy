@@ -1,7 +1,9 @@
-package io.alkemy
+package io.alkemy.examples
 
+import io.alkemy.AlkemyContext
 import io.alkemy.config.AlkemyConfig
 import io.alkemy.config.Browser
+import io.alkemy.use
 import io.kotest.core.spec.style.StringSpec
 
 class CustomConfig : StringSpec({

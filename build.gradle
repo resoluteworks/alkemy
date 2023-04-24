@@ -91,6 +91,7 @@ publishing {
     repositories {
         mavenLocal()
         maven {
+            name = "mavenCentral"
             url = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
             credentials {
                 username = "${NEXUS_USERNAME}"
@@ -102,4 +103,13 @@ publishing {
 
 signing {
     sign publishing.publications.mavenJava
+}
+
+tasks.withType(PublishToMavenRepository) {
+    def predicate = provider {
+        repository != publishing.repositories.mavenCentral || System.getProperty("mavenCentral") == "true"
+    }
+    onlyIf("Publishing to Maven Central") {
+        predicate.get()
+    }
 }

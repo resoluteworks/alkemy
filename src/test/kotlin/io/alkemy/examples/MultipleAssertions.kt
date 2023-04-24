@@ -1,4 +1,4 @@
-package com.test
+package io.alkemy.examples
 
 import io.alkemy.AlkemyContext
 import io.alkemy.assertions.shouldBeDisabled

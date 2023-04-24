@@ -10,7 +10,7 @@ echo "Version is $VERSION"
 
 rm -rf docs/dokka
 ./gradlew clean dokkaHtml
-./gradlew publish
+./gradlew publish -DmavenCentral=true
 
 git add --all
 git commit -am "Release $VERSION"
