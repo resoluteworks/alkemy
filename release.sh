@@ -11,7 +11,7 @@ echo "Version is $VERSION"
 rm -rf docs/dokka
 export COVERALLS_REPO_TOKEN="${COVERALLS_REPO_TOKEN_ALKEMY}"
 ./gradlew clean dokkaHtml
-./gradlew fullBuild publish
+./gradlew buildAndPublish
 
 git add --all
 git commit -am "Release $VERSION"

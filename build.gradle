@@ -114,11 +114,13 @@ jacocoTestReport {
     }
 }
 
-task fullBuild {
+task buildAndPublish {
     dependsOn 'clean'
     dependsOn 'test'
     dependsOn 'jacocoTestReport'
     dependsOn 'coverallsJacoco'
+    dependsOn 'publish'
     tasks.findByName('jacocoTestReport').mustRunAfter 'test'
     tasks.findByName('coverallsJacoco').mustRunAfter 'jacocoTestReport'
+    tasks.findByName('publish').mustRunAfter 'coverallsJacoco'
 }
