@@ -8,7 +8,7 @@
 Alkemy is a browser automation framework written in [Kotlin](https://kotlinlang.org/) and based on [Selenium](https://www.selenium.dev/) and [Kotest](https://kotest.io/).
 The objective is to provide more fluent definitions for Selenium tests, using a functional style and Kotlin extension functions. Alkemy currently supports Chrome and Firefox browsers. 
 
-Some of the feature highlights are [extension functions and assertions](https://github.com/cosmin-marginean/alkemy/blob/main/README.md#writing-tests) for Strings, WebDriver and WebElement, [automatic report generation](https://github.com/cosmin-marginean/alkemy/wiki/Reports-and-screenshots), and [running multiple browsers in parallel](https://github.com/cosmin-marginean/alkemy/wiki/Running-tests-in-parallel).
+Some of the feature highlights are [extension functions and assertions](https://github.com/cosmin-marginean/alkemy#writing-tests) for Strings, WebDriver and WebElement, [automatic report generation](https://github.com/cosmin-marginean/alkemy/wiki/Reports-and-screenshots), and [running multiple browsers in parallel](https://github.com/cosmin-marginean/alkemy/wiki/Running-tests-in-parallel).
 
 * See [Documentation](https://github.com/cosmin-marginean/alkemy/wiki/Alkemy-Documentation) for further information.
 * For various example tests please check the tests [here](https://github.com/cosmin-marginean/alkemy/tree/main/src/test/kotlin/io/alkemy/examples).
