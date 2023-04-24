@@ -1,4 +1,4 @@
-<img width="476" alt="2023-04-22_20-34-31" src="https://user-images.githubusercontent.com/2995576/233803514-7bc23cc4-eab0-40a1-8550-82305ebecfed.png">
+<img width="606" alt="2023-04-24_18-26-03" src="https://user-images.githubusercontent.com/2995576/234071539-5eec3c7e-0b66-49cf-aa55-58a664002817.png">
 
 # Alkemy
 
