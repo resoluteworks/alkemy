@@ -24,6 +24,7 @@ class TestSelector(val context: AlkemyContext) : StringSpec({
                 .use {
                     get("/test-selector-attribute")
                     byTestSelector("content-div").text shouldBe "Secure area"
+                    "[${testSelector}=content-div]".text shouldBe "Secure area"
                 }
         }
     }

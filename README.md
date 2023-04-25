@@ -8,11 +8,16 @@
 Alkemy is a browser automation framework written in [Kotlin](https://kotlinlang.org/) and based on [Selenium](https://www.selenium.dev/) and [Kotest](https://kotest.io/).
 The objective is to provide more fluent definitions for Selenium tests, using a functional style and Kotlin extension functions. Alkemy currently supports Chrome and Firefox browsers. 
 
-Some of the features include [extension functions and assertions](https://github.com/cosmin-marginean/alkemy#writing-tests), [automatic report generation](https://github.com/cosmin-marginean/alkemy/wiki/Reports-and-screenshots), [custom test selector](https://github.com/cosmin-marginean/alkemy/wiki/Test-selector-attribute) and [running multiple browsers in parallel](https://github.com/cosmin-marginean/alkemy/wiki/Running-tests-in-parallel).
+## Feature highlights
+* [Extension functions and assertions](https://github.com/cosmin-marginean/alkemy#string-selectors)
+* [Custom test selector](https://github.com/cosmin-marginean/alkemy/wiki/Test-selector-attribute)
+* [Reports](https://github.com/cosmin-marginean/alkemy/wiki/Reports-and-screenshots)
+* [Run multiple browsers in parallel](https://github.com/cosmin-marginean/alkemy/wiki/Running-tests-in-parallel)
 
-* See [Documentation](https://github.com/cosmin-marginean/alkemy/wiki) for further information.
-* Various example tests can be found [here](https://github.com/cosmin-marginean/alkemy/tree/main/src/test/kotlin/io/alkemy/examples).
-* For a full working project setup please check the [sample-project](https://github.com/cosmin-marginean/alkemy/tree/main/sample-project).
+## Documentation
+* [Reference documentation](https://github.com/cosmin-marginean/alkemy/wiki)
+* [Various test examples](https://github.com/cosmin-marginean/alkemy/tree/main/src/test/kotlin/io/alkemy/examples)
+* [Full working project setup](https://github.com/cosmin-marginean/alkemy/tree/main/sample-project)
 
 ## Dependency
 ```groovy
@@ -68,6 +73,11 @@ Read more about this [here](https://github.com/cosmin-marginean/alkemy/wiki/Test
 ```kotlin
 byTestSelector("content-div").text shouldBe "Secure area"
 ```
+Or 
+```kotlin
+"[${testSelector}=content-div]".text shouldBe "Secure area"
+```
+Please note this is only available within a `context.apply{}` block.
 
 ## Page Object Model
 Alkemy also provides a very basic framework for Page Object Model approaches. This includes all the extensions and
