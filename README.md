@@ -20,10 +20,10 @@ testImplementation "io.resoluteworks:alkemy:${alkemyVersion}"
 ```
 
 ## Writing tests
-Alkemy enables a variety of approaches for writing Selenium tests in Kotlin. A set of extensions functions can be
-used against `String` to perform lookups and assertions.
+Alkemy enables a variety of approaches for writing Selenium tests in Kotlin, depending on your design preference.
 
-
+### String selectors
+A set of extensions functions can be used against `String` to perform lookups and assertions.
 ```kotlin
 class MyTest(val context: AlkemyContext) : StringSpec({
 
@@ -44,10 +44,9 @@ class MyTest(val context: AlkemyContext) : StringSpec({
     }
 ```
 
-
-Alternatively, similar extensions are available for `WebDriver` and `WebElement`, including
+### WebDriver & WebElement extensions
+Similar extensions are available for `WebDriver` and `WebElement`, including
 helper methods like `fillForm`, `typeIn` and assertions like `shouldBeVisible`, `shoulHaveClass`, etc.
-
 
 ```kotlin
     "login with fillForm" {
@@ -60,7 +59,20 @@ helper methods like `fillForm`, `typeIn` and assertions like `shouldBeVisible`, 
     }
 ```
 
+### Custom test selector attribute
+Alkemy can use a globally defined `data-*` HTML attribute to lookup elements.
+Read more about this [here](https://github.com/cosmin-marginean/alkemy/wiki/Test-selector-attribute).
+```html
+<body>
+    <div data-test-selector="content-div">Secure area</div>
+    <div>Footer</div>
+</body>
+```
+```kotlin
+byTestSelector("content-div").text shouldBe "Secure area"
+```
 
+### Page Object Model
 Alkemy also provides a very basic framework for Page Object Model approaches. This includes all the extensions and
 assertions available for `WebDriver`.
 
@@ -85,8 +97,8 @@ class SecurePage(context: AlkemyContext) : Page(context, "/secure")
     
 ```
 
-
-Lastly, any Kotest assertions can be used natively in combination with the Alkemy or Selenium objects.
+### Using native Kotest assertions
+Any Kotest assertions can be used natively in combination with the Alkemy or Selenium objects.
 
 ```kotlin
     "using native Kotest assertions" {

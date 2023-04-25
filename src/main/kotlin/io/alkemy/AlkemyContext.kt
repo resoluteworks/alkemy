@@ -46,7 +46,7 @@ class AlkemyContext(
     val testSelector: String = config.testSelectorAttribute
 
     fun byTestSelector(value: String): WebElement {
-        return webDriver.find("$testSelector=[$value]")
+        return webDriver.find("[$testSelector=$value]")
     }
 
     fun String.click(): String {
@@ -112,6 +112,11 @@ class AlkemyContext(
     val String.inputValue: String
         get() {
             return webDriver.find(this).value
+        }
+
+    val String.text: String
+        get() {
+            return webDriver.find(this).text
         }
 }
 
