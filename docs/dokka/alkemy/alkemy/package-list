@@ -112,6 +112,7 @@ $dokka.location:io.alkemy/AlkemyContext/shouldBeVisible/kotlin.String#/PointingT
 $dokka.location:io.alkemy/AlkemyContext/shouldHaveClass/kotlin.String#kotlin.String/PointingToDeclaration/alkemy/io.alkemy/-alkemy-context/should-have-class.html
 $dokka.location:io.alkemy/AlkemyContext/shouldHaveText/kotlin.String#kotlin.String/PointingToDeclaration/alkemy/io.alkemy/-alkemy-context/should-have-text.html
 $dokka.location:io.alkemy/AlkemyContext/testSelector/#/PointingToDeclaration/alkemy/io.alkemy/-alkemy-context/test-selector.html
+$dokka.location:io.alkemy/AlkemyContext/text/kotlin.String#/PointingToDeclaration/alkemy/io.alkemy/-alkemy-context/text.html
 $dokka.location:io.alkemy/AlkemyContext/type/kotlin.String#kotlin.String/PointingToDeclaration/alkemy/io.alkemy/-alkemy-context/type.html
 $dokka.location:io.alkemy/AlkemyContext/webDriver/#/PointingToDeclaration/alkemy/io.alkemy/-alkemy-context/web-driver.html
 $dokka.location:io.alkemy/AlkemyContext/webDriverProvider/#/PointingToDeclaration/alkemy/io.alkemy/-alkemy-context/web-driver-provider.html
