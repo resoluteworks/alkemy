@@ -10,7 +10,7 @@ The objective is to provide more fluent definitions for Selenium tests, using a 
 
 Some of the features includ [extension functions and assertions](https://github.com/cosmin-marginean/alkemy#writing-tests), [automatic report generation](https://github.com/cosmin-marginean/alkemy/wiki/Reports-and-screenshots), [custom test selector](https://github.com/cosmin-marginean/alkemy/wiki/Test-selector-attribute) and [running multiple browsers in parallel](https://github.com/cosmin-marginean/alkemy/wiki/Running-tests-in-parallel).
 
-* See [Documentation](https://github.com/cosmin-marginean/alkemy/wiki/Alkemy-Documentation) for further information.
+* See [Documentation](https://github.com/cosmin-marginean/alkemy/wiki) for further information.
 * Various examples tests can be found [here](https://github.com/cosmin-marginean/alkemy/tree/main/src/test/kotlin/io/alkemy/examples).
 * For a full working project setup please check the [sample-project](https://github.com/cosmin-marginean/alkemy/tree/main/sample-project).
 
@@ -110,4 +110,4 @@ Any Kotest assertions can be used natively in combination with the Alkemy or Sel
 
 
 ## Documentation
-See [Documentation](https://github.com/cosmin-marginean/alkemy/wiki/Alkemy-Documentation) for further information.
+See [Documentation](https://github.com/cosmin-marginean/alkemy/wiki) for further information.
