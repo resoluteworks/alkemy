@@ -1,11 +1,7 @@
 package io.alkemy.examples
 
 import io.alkemy.AlkemyContext
-import io.alkemy.assertions.shouldBeDisabled
-import io.alkemy.assertions.shouldBeEnabled
-import io.alkemy.assertions.shouldBeHidden
-import io.alkemy.assertions.shouldBeVisible
-import io.alkemy.assertions.shouldHaveText
+import io.alkemy.assertions.*
 import io.alkemy.extensions.click
 import io.alkemy.extensions.clickElement
 import io.alkemy.extensions.find

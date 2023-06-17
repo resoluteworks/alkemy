@@ -20,7 +20,7 @@ class TestSelector(val context: AlkemyContext) : StringSpec({
 
         withMockRequest(responseBody) { baseUrl ->
             val config = AlkemyConfig(baseUrl = baseUrl)
-            AlkemyContext.withConfig(config)
+            AlkemyContext.NewDriver(config)
                 .use {
                     get("/test-selector-attribute")
                     byTestSelector("content-div").text shouldBe "Secure area"

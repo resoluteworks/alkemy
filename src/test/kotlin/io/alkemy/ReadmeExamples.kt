@@ -10,7 +10,7 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.string.shouldContain
 
-class MyTest(val context: AlkemyContext) : StringSpec({
+class ReadmeExamples(val context: AlkemyContext) : StringSpec({
 
     "string selectors and assertions" {
         // To use String extensions the context.apply{} construct is required

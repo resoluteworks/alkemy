@@ -6,17 +6,17 @@ import io.alkemy.config.Browser
 import io.alkemy.use
 import io.kotest.core.spec.style.StringSpec
 
-class CustomConfig : StringSpec({
+class CustomConfigPooled : StringSpec({
 
-    "run with custom config" {
+    "run with custom pooled config" {
         val config = AlkemyConfig.fromSystemProperties()
             .copy(
                 browser = Browser.FIREFOX,
-                headless = true,
+                headless = false,
                 windowWidth = 800,
                 windowHeight = 600
             )
-        val context = AlkemyContext.NewDriver(config)
+        val context = AlkemyContext.PooledDrivers(config)
         context.use {
             val form = "#input-example"
             val button = "$form button"

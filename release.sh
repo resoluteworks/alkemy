@@ -2,9 +2,6 @@
 
 set -e
 
-git tag -l | xargs git tag -d
-git fetch --tags
-
 VERSION=`cat version.properties | grep "version" | awk -F' *= *' '{print $2}'`
 echo "Version is $VERSION"
 

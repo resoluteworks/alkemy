@@ -25,7 +25,9 @@ class AlkemyReport(
         val bytes = (context.webDriver as TakesScreenshot).getScreenshotAs(OutputType.BYTES)
         pngFile.writeBytes(bytes)
 
-        val media = MediaEntityBuilder.createScreenCaptureFromPath(pngFile.absolutePath, if (failure) "Test failed" else null).build()
+        val media =
+            MediaEntityBuilder.createScreenCaptureFromPath(pngFile.absolutePath, if (failure) "Test failed" else null)
+                .build()
         val node = ReportContext.testNodes[testCase]!!
         if (failure) {
             node.fail(description, media)

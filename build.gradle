@@ -15,6 +15,10 @@ repositories {
     mavenCentral()
 }
 
+ext.publishDescription = "A browser automation framework written in Kotlin and based on Selenium and Kotest"
+ext.developer = "Cosmin Marginean"
+apply from: 'publish.gradle'
+
 java {
     withJavadocJar()
     withSourcesJar()
@@ -61,46 +65,6 @@ test {
 
     systemProperty "alkemy.browser", "chrome"
     systemProperty "alkemy.baseUrl", "https://the-internet.herokuapp.com"
-}
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-            pom {
-                name = 'alkemy'
-                description = 'A browser automation framework written in Kotlin and based on Selenium and Kotest'
-                url = 'https://github.com/cosmin-marginean/alkemy'
-                licenses {
-                    license {
-                        name = 'Apache License 2.0'
-                        url = 'https://github.com/cosmin-marginean/alkemy/blob/main/LICENSE'
-                        distribution = 'repo'
-                    }
-                }
-                scm {
-                    url = 'https://github.com/cosmin-marginean/alkemy'
-                    connection = 'scm:git:git://github.com/cosmin-marginean/alkemy.git'
-                    developerConnection = 'scm:git:ssh://git@github.com:cosmin-marginean/alkemy.git'
-                }
-                developers {
-                    developer {
-                        name = 'Cosmin Marginean'
-                    }
-                }
-            }
-        }
-    }
-    repositories {
-        mavenLocal()
-        maven {
-            url = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
-            credentials {
-                username = "${NEXUS_USERNAME}"
-                password = "${NEXUS_PASSWORD}"
-            }
-        }
-    }
 }
 
 signing {

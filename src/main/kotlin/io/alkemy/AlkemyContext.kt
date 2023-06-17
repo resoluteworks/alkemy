@@ -1,12 +1,8 @@
 package io.alkemy
 
-import io.alkemy.assertions.shouldBeDisabled
-import io.alkemy.assertions.shouldBeEnabled
-import io.alkemy.assertions.shouldBeHidden
-import io.alkemy.assertions.shouldBeVisible
-import io.alkemy.assertions.shouldHaveClass
-import io.alkemy.assertions.shouldHaveText
+import io.alkemy.assertions.*
 import io.alkemy.config.AlkemyConfig
+import io.alkemy.config.WebDriverPool
 import io.alkemy.extensions.clearText
 import io.alkemy.extensions.find
 import io.alkemy.extensions.typeIn
@@ -15,21 +11,33 @@ import io.alkemy.pom.Page
 import io.alkemy.reports.AlkemyReport
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
+import java.io.Closeable
 import kotlin.reflect.full.primaryConstructor
 
-class AlkemyContext(
-    val config: AlkemyConfig,
-    val webDriverProvider: () -> WebDriver
-) {
+sealed class AlkemyContext(
+    val config: AlkemyConfig
+) : Closeable {
 
-    companion object {
-        fun withConfig(config: AlkemyConfig): AlkemyContext {
-            val driver = config.newWebDriver()
-            return AlkemyContext(config) { driver }
+    abstract val webDriver: WebDriver
+
+    class NewDriver(config: AlkemyConfig) : AlkemyContext(config) {
+        private val driver = config.newWebDriver()
+        override val webDriver: WebDriver get() = driver
+
+        override fun close() {
+            driver.close()
         }
     }
 
-    val webDriver: WebDriver get() = webDriverProvider()
+    class PooledDrivers(config: AlkemyConfig) : AlkemyContext(config) {
+        private val webDriverPool = WebDriverPool()
+        override val webDriver: WebDriver get() = webDriverPool.getDriver(config)
+
+        override fun close() {
+            webDriverPool.close()
+        }
+    }
+
     val report: AlkemyReport = AlkemyReport(this)
 
     fun get(relativeUrl: String): WebDriver {
