@@ -38,7 +38,6 @@ test {
   testLogging {
     showStandardStreams = true
   }
-  systemProperty 'webdriver.chrome.driver', "${rootDir}/chromedriver"
   systemProperty 'kotest.framework.parallelism', '4'
 }
 

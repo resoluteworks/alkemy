@@ -32,7 +32,6 @@ test {
     testLogging {
         showStandardStreams = true
     }
-    systemProperty "webdriver.chrome.driver", "./chromedriver"
     systemProperty "kotest.framework.parallelism", "4"
 
     systemProperty "alkemy.browser", "chrome"
