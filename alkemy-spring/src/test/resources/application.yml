@@ -1,0 +1,3 @@
+alkemy:
+  base-url: https://the-internet.herokuapp.com
+  headless: true
