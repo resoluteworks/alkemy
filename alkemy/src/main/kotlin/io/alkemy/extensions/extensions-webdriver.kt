@@ -6,7 +6,12 @@ import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 
-fun WebDriver.typeIn(inputName: String, text: String): WebDriver {
+fun WebDriver.typeIn(cssSelector: String, text: String): WebDriver {
+    find(cssSelector).sendKeys(text)
+    return this
+}
+
+fun WebDriver.typeInInput(inputName: String, text: String): WebDriver {
     findElement(By.cssSelector("input[name='${inputName}']"))
         .sendKeys(text)
     return this
@@ -42,7 +47,7 @@ val WebDriver.text: String
 
 fun WebDriver.fillForm(values: Map<String, String>): WebDriver {
     values.forEach { (field, fieldValue) ->
-        typeIn(field, fieldValue)
+        typeInInput(field, fieldValue)
     }
     return this
 }

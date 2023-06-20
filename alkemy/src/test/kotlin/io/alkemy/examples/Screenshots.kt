@@ -4,7 +4,7 @@ import io.alkemy.AlkemyContext
 import io.alkemy.assertions.shouldHaveText
 import io.alkemy.extensions.screenshot
 import io.alkemy.extensions.submit
-import io.alkemy.extensions.typeIn
+import io.alkemy.extensions.typeInInput
 import io.kotest.core.spec.style.StringSpec
 
 class Screenshots(val context: AlkemyContext) : StringSpec() {
@@ -16,10 +16,10 @@ class Screenshots(val context: AlkemyContext) : StringSpec() {
             val driver = context.get("/login")
             report.screenshot(testCase)
 
-            driver.typeIn("username", "tomsmith")
+            driver.typeInInput("username", "tomsmith")
             report.screenshot(testCase, "Username entered")
 
-            driver.typeIn("password", "SuperSecretPassword!")
+            driver.typeInInput("password", "SuperSecretPassword!")
             report.screenshot(testCase, "Password entered")
 
             driver.submit() shouldHaveText "Welcome to the Secure Area"
@@ -28,9 +28,9 @@ class Screenshots(val context: AlkemyContext) : StringSpec() {
         "take screenshot - chained calls" {
             context.get("/login")
                 .screenshot(context, testCase)
-                .typeIn("username", "tomsmith")
+                .typeInInput("username", "tomsmith")
                 .screenshot(context, testCase)
-                .typeIn("password", "SuperSecretPassword!")
+                .typeInInput("password", "SuperSecretPassword!")
                 .screenshot(context, testCase)
                 .submit() shouldHaveText "Welcome to the Secure Area"
         }
