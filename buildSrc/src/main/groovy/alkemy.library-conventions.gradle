@@ -43,6 +43,7 @@ test {
 }
 
 signing {
+  required { !version.toString().contains("-dev-experimental") && gradle.taskGraph.hasTask("publish") }
   sign publishing.publications.mavenJava
 }
 
