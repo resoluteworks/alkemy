@@ -1,90 +1,17 @@
 plugins {
-    id "java-library"
-    id "maven-publish"
-    id "signing"
-    id "com.glovoapp.semantic-versioning" version "1.1.10"
-    id "org.jetbrains.kotlin.jvm" version "${kotlinVersion}"
-    id "org.jetbrains.dokka" version "1.7.20"
-    id "jacoco"
-    id "com.github.nbaztec.coveralls-jacoco" version "1.2.15"
+  id 'org.jetbrains.kotlin.jvm' version "${kotlinVersion}" apply false  // Kotlin Gradle plugin must be loaded in the parent/root project
+  id 'com.glovoapp.semantic-versioning' version '1.1.10'
+  id 'jacoco-report-aggregation'
+  id 'com.github.nbaztec.coveralls-jacoco' version '1.2.15'
 }
 
-group = "io.resoluteworks"
-
-repositories {
-    mavenCentral()
+coverallsJacoco {
+  reportPath = 'code-coverage-report/build/reports/jacoco/testCodeCoverageReport/testCodeCoverageReport.xml'
 }
 
-ext.publishDescription = "A browser automation framework written in Kotlin and based on Selenium and Kotest"
-ext.developer = "Cosmin Marginean"
-apply from: 'publish.gradle'
+tasks.coverallsJacoco { mustRunAfter('code-coverage-report:testCodeCoverageReport') }
 
-java {
-    withJavadocJar()
-    withSourcesJar()
-}
-
-javadocJar {
-    dependsOn(dokkaHtml)
-    archiveClassifier.set("javadoc")
-    from(dokkaHtml.outputDirectory)
-}
-
-dokkaHtml {
-    outputDirectory.set(file("docs/dokka/${project.name}"))
-}
-
-dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
-    implementation "io.kotest:kotest-assertions-core:${kotestVersion}"
-    implementation "io.kotest:kotest-property:${kotestVersion}"
-    implementation "io.kotest:kotest-runner-junit5-jvm:${kotestVersion}"
-    implementation "org.seleniumhq.selenium:selenium-api:${seleniumVersion}"
-    implementation "org.seleniumhq.selenium:selenium-chrome-driver:${seleniumVersion}"
-    implementation "org.seleniumhq.selenium:selenium-firefox-driver:${seleniumVersion}"
-    implementation "org.seleniumhq.selenium:selenium-support:${seleniumVersion}"
-    implementation "org.slf4j:slf4j-api:1.7.36"
-    implementation "com.aventstack:extentreports:5.0.9"
-
-    testImplementation "ch.qos.logback:logback-classic:1.3.7"
-    testImplementation "com.squareup.okhttp3:mockwebserver:4.10.0"
-}
-
-kotlin {
-    jvmToolchain(8)
-}
-
-test {
-    useJUnitPlatform()
-    testLogging {
-        showStandardStreams = true
-    }
-    systemProperty "webdriver.chrome.driver", "./chromedriver"
-    systemProperty "kotest.framework.parallelism", "4"
-
-    systemProperty "alkemy.browser", "chrome"
-    systemProperty "alkemy.baseUrl", "https://the-internet.herokuapp.com"
-}
-
-signing {
-    sign publishing.publications.mavenJava
-}
-
-jacocoTestReport {
-    reports {
-        html.required = true
-        xml.required = true
-    }
-}
-
-tasks.withType(PublishToMavenRepository) { it.dependsOn test }
-
-task fullBuild {
-    dependsOn 'clean'
-    dependsOn 'test'
-    dependsOn 'jacocoTestReport'
-    dependsOn 'coverallsJacoco'
-    tasks.findByName('jacocoTestReport').mustRunAfter 'test'
-    tasks.findByName('coverallsJacoco').mustRunAfter 'jacocoTestReport'
+tasks.register('fullBuild') {
+  dependsOn 'code-coverage-report:testCodeCoverageReport'
+  dependsOn 'coverallsJacoco'
 }
