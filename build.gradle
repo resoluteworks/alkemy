@@ -25,6 +25,11 @@ reporting {
 
 coverallsJacoco {
   reportPath = 'build/reports/jacoco/testCodeCoverageReport/testCodeCoverageReport.xml'
+  // workaround until https://github.com/nbaztec/coveralls-jacoco-gradle-plugin/pull/62 is merged and released
+  reportSourceSets = configurations.allCodeCoverageReportSourceDirectories.incoming.artifactView {view -> {
+    view.componentFilter(id -> id instanceof ProjectComponentIdentifier)
+    view.lenient(true)
+  }}.files.files
 }
 
 tasks.coverallsJacoco {
