@@ -5,13 +5,33 @@ plugins {
   id 'com.github.nbaztec.coveralls-jacoco' version '1.2.15'
 }
 
-coverallsJacoco {
-  reportPath = 'code-coverage-report/build/reports/jacoco/testCodeCoverageReport/testCodeCoverageReport.xml'
+repositories {
+  mavenCentral()
 }
 
-tasks.coverallsJacoco { mustRunAfter('code-coverage-report:testCodeCoverageReport') }
+dependencies {
+  subprojects.forEach { subproject ->
+    jacocoAggregation project(":${subproject.name}")
+  }
+}
+
+reporting {
+  reports {
+    testCodeCoverageReport(JacocoCoverageReport) {
+      testType = TestSuiteType.UNIT_TEST
+    }
+  }
+}
+
+coverallsJacoco {
+  reportPath = 'build/reports/jacoco/testCodeCoverageReport/testCodeCoverageReport.xml'
+}
+
+tasks.coverallsJacoco {
+  mustRunAfter('testCodeCoverageReport')
+}
 
 tasks.register('fullBuild') {
-  dependsOn 'code-coverage-report:testCodeCoverageReport'
+  dependsOn 'testCodeCoverageReport'
   dependsOn 'coverallsJacoco'
 }
