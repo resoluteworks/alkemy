@@ -13,6 +13,7 @@ The objective is to provide more fluent definitions for Selenium tests, using a 
 * [Custom test selector](https://github.com/cosmin-marginean/alkemy/wiki/Test-selector-attribute)
 * [Reports](https://github.com/cosmin-marginean/alkemy/wiki/Reports-and-screenshots)
 * [Run multiple browsers in parallel](https://github.com/cosmin-marginean/alkemy/wiki/Running-tests-in-parallel)
+* [Spring Boot Module](#spring-boot-module)
 
 ## Documentation
 * [Reference documentation](https://github.com/cosmin-marginean/alkemy/wiki)
@@ -122,6 +123,10 @@ Any Kotest assertions can be used natively in combination with the Alkemy or Sel
         driver.find("h2").text shouldContain "Login Page"
     }
 ```
+
+## Spring Boot Module
+
+See [alkemy-spring](alkemy-spring/README.md).
 
 ## Documentation
 See [Documentation](https://github.com/cosmin-marginean/alkemy/wiki) for further information.
