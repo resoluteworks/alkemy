@@ -2,7 +2,7 @@ plugins {
   id 'org.jetbrains.kotlin.jvm' version "${kotlinVersion}" apply false  // Kotlin Gradle plugin must be loaded in the parent/root project
   id 'com.glovoapp.semantic-versioning' version '1.1.10'
   id 'jacoco-report-aggregation'
-  id 'com.github.nbaztec.coveralls-jacoco' version '1.2.15'
+  id 'com.github.nbaztec.coveralls-jacoco' version '1.2.16'
 }
 
 repositories {
@@ -25,11 +25,6 @@ reporting {
 
 coverallsJacoco {
   reportPath = 'build/reports/jacoco/testCodeCoverageReport/testCodeCoverageReport.xml'
-  // workaround until https://github.com/nbaztec/coveralls-jacoco-gradle-plugin/pull/62 is merged and released
-  reportSourceSets = configurations.allCodeCoverageReportSourceDirectories.incoming.artifactView {view -> {
-    view.componentFilter(id -> id instanceof ProjectComponentIdentifier)
-    view.lenient(true)
-  }}.files.files
 }
 
 tasks.coverallsJacoco {
