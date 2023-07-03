@@ -56,6 +56,16 @@ class DynamicConfigurationTest(alkemyContext: AlkemyContext) : WordSpec() {
 `AlkemyConfig#copy()` after calling `AlkemyProperties#toAlkemyConfig()` will throw an exception if `baseUrl` is not yet
 specified.
 
+## Excluding Alkemy from a test
+
+To exclude Alkemy from a test, exclude `AlkemyConfiguration` using `@EnableAutoConfiguration#exclude`, e.g.
+
+```kotlin
+@SpringBootTest
+@EnableAutoConfiguration(exclude = [AlkemyConfiguration::class])
+class MySpec(service: UserService) : WordSpec() {
+```
+
 ## Disabling Kotest Auto Scan
 
 If Kotest [auto scan](https://kotest.io/docs/framework/project-config.html#runtime-detection) is disabled, you will need
