@@ -1,12 +1,13 @@
 package io.alkemy.examples
 
-import io.alkemy.AlkemyContext
 import io.alkemy.extensions.fillForm
 import io.alkemy.extensions.submit
+import io.alkemy.installAlkemyExtension
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
-class StringSelectors(val context: AlkemyContext) : StringSpec({
+class StringSelectors : StringSpec({
+    val context = installAlkemyExtension()
 
     "string selectors and assertions" {
         context.apply {

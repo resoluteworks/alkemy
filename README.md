@@ -26,18 +26,17 @@ The objective is to provide more fluent definitions for Selenium tests, using a 
 testImplementation "io.resoluteworks:alkemy:${alkemyVersion}"
 ```
 
-## Kotest extension
-This is required in order to use out-of-the-box wiring of web drivers.
+## Usage
 ```kotlin
-class AlkemyProjectConfig : AbstractProjectConfig() {
-    override fun extensions() = listOf(AlkemyKotestExtension())
-}
+class MyTest : StringSpec({
+    val context = installAlkemyExtension()
 ```
 
 ## String selectors
 A set of extensions functions can be used against `String` to perform lookups and assertions.
 ```kotlin
-class MyTest(val context: AlkemyContext) : StringSpec({
+class MyTest : StringSpec({
+    val context = installAlkemyExtension()
 
     "string selectors and assertions" {
         // To use String extensions the context.apply{} construct is required

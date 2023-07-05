@@ -1,13 +1,14 @@
 package io.alkemy.examples
 
-import io.alkemy.AlkemyContext
 import io.alkemy.assertions.*
 import io.alkemy.extensions.click
 import io.alkemy.extensions.clickElement
 import io.alkemy.extensions.find
+import io.alkemy.installAlkemyExtension
 import io.kotest.core.spec.style.StringSpec
 
-class MultipleAssertions(val context: AlkemyContext) : StringSpec({
+class MultipleAssertions : StringSpec({
+    val context = installAlkemyExtension()
 
     "enabling and disabling elements" {
         val form = context.get("/dynamic_controls")

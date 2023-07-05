@@ -127,11 +127,3 @@ sealed class AlkemyContext(
             return webDriver.find(this).text
         }
 }
-
-fun AlkemyContext.use(block: AlkemyContext.() -> Unit) {
-    try {
-        this.block()
-    } finally {
-        this.webDriver.close()
-    }
-}

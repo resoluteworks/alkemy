@@ -4,7 +4,8 @@ import io.alkemy.extensions.*
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
-class ExtensionsWebDriverTest(val context: AlkemyContext) : StringSpec({
+class ExtensionsWebDriverTest : StringSpec({
+    val context = installAlkemyExtension()
 
     "clearInput" {
         context.apply {

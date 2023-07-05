@@ -1,6 +1,6 @@
 # Alkemy Spring Module
 
-Alkemy module to integrate with Spring Boot.
+Module to configure Alkemy using Spring configuration properties
 
 ## Usage
 
@@ -11,12 +11,12 @@ Gradle:
 testImplementation "io.resoluteworks:alkemy-spring:${alkemyVersion}"
 ```
 
-:warning: **Do NOT load [AlkemyKotestExtension](../README.md#kotest-extension).**
-
-Autowire `AlkemyContext` in the constructor together with other Spring beans, e.g.
+Autowire `AlkemyProperties` in the constructor together with other Spring beans, then use it to register the
+`AlkemyExtension`, e.g.
 
 ```kotlin
-class MySpec(alkemyContext: AlkemyContext, service: UserService) : WordSpec() {
+class MySpec(alkemyProperties: AlkemyProperties, service: UserService) : WordSpec({
+    val alkemyContext = installAlkemyExtension(alkemyProperties)
 ```
 
 Configure Alkemy using Spring configuration properties, e.g.
@@ -30,50 +30,28 @@ alkemy:
 
 ## Dynamic Configuration
 
-To configure Alkemy dynamically, overwrite the `AlkemyConfig` bean in the test configuration.
+To configure Alkemy dynamically, use `AlkemyProperties`' copy constructor to overwrite any properties.
 
-For example, to configure `alkemy.base-url` with the webserver port that was randomly assigned
-by Spring Boot Test:
+For example, to configure `alkemy.base-url` with the webserver port that was randomly assigned by Spring Boot Test:
 
 ```kotlin
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-class DynamicConfigurationTest(alkemyContext: AlkemyContext) : WordSpec() {
-    @TestConfiguration
-    @Lazy   // required to use @LocalServerPort in @TestConfiguration
-    class Configuration {
-        @LocalServerPort
-        private lateinit var serverPort: Number
-
-        @Bean
-        @Primary
-        fun customAlkemyConfig(alkemyProperties: AlkemyProperties) = alkemyProperties.copy(
-            baseUrl = "http://localhost:${serverPort}",
-        ).toAlkemyConfig()
-    }
-```
-
-:warning: Make sure to call `AlkemyProperties#copy()` before calling `AlkemyProperties#toAlkemyConfig()`. Calling
-`AlkemyConfig#copy()` after calling `AlkemyProperties#toAlkemyConfig()` will throw an exception if `baseUrl` is not yet
-specified.
-
-## Excluding Alkemy from a test
-
-To exclude Alkemy from a test, exclude `AlkemyConfiguration` using `@EnableAutoConfiguration#exclude`, e.g.
-
-```kotlin
-@SpringBootTest
-@EnableAutoConfiguration(exclude = [AlkemyConfiguration::class])
-class MySpec(service: UserService) : WordSpec() {
+class DynamicConfigurationTest(alkemyProperties: AlkemyProperties, @LocalServerPort serverPort: Int) : WordSpec() {
+    init {
+        val alkemyContext = installAlkemyExtension(
+            alkemyProperties.copy(
+                baseUrl = "http://localhost:${serverPort}",
+            )
+        )
 ```
 
 ## Disabling Kotest Auto Scan
 
 If Kotest [auto scan](https://kotest.io/docs/framework/project-config.html#runtime-detection) is disabled, you will need
-to manually load the `SpringAutowireConstructorExtension` and `AlkemySpringKotestExtension` extensions in your Project
-config, e.g.
+to manually load the `SpringAutowireConstructorExtension` extension in your Project config, e.g.
 
 ```kotlin
 class ProjectConfig : AbstractProjectConfig() {
-   override fun extensions() = listOf(SpringAutowireConstructorExtension, AlkemySpringKotestExtension)
+    override fun extensions() = listOf(SpringAutowireConstructorExtension)
 }
 ```
