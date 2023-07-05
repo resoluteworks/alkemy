@@ -37,8 +37,13 @@ object ReportContext : BeforeProjectListener, AfterProjectListener, PrepareSpecL
     }
 
     fun createTestCaseNode(testCase: TestCase) {
-        log.debug("Creating report node test for: ${testCase.spec::class.simpleName!!}.testCase.name.testName")
-        val node = specTests[testCase.spec::class.simpleName!!]!!.createNode(testCase.name.testName)
+        val specName = testCase.spec::class.simpleName
+        val specTest = specTests[specName]
+            ?: return // if auto-scan is disabled and ReportContext is not registered
+
+        val testName = testCase.name.testName
+        log.debug("Creating report node test for: $specName.$testName")
+        val node = specTest.createNode(testName)
         testNodes[testCase] = node
     }
 

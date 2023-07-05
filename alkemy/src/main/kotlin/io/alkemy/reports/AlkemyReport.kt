@@ -1,5 +1,6 @@
 package io.alkemy.reports
 
+import com.aventstack.extentreports.ExtentTest
 import com.aventstack.extentreports.MediaEntityBuilder
 import io.alkemy.AlkemyContext
 import io.alkemy.config.ReportConfig
@@ -16,6 +17,11 @@ class AlkemyReport(
 ) : BeforeTestListener, AfterTestListener {
 
     fun screenshot(testCase: TestCase, description: String? = null, failure: Boolean = false) {
+        val node = ReportContext.testNodes[testCase]
+        screenshot(node, testCase, description, failure)
+    }
+
+    private fun screenshot(node: ExtentTest?, testCase: TestCase, description: String? = null, failure: Boolean = false) {
         val clsName = testCase.spec::class.simpleName!!
         val parentDir = File(ReportConfig.screenshotDir, clsName)
         parentDir.mkdirs()
@@ -25,10 +31,14 @@ class AlkemyReport(
         val bytes = (context.webDriver as TakesScreenshot).getScreenshotAs(OutputType.BYTES)
         pngFile.writeBytes(bytes)
 
+        if (node == null) { // if auto-scan is disabled and ReportContext is not registered
+            return
+        }
+
         val media =
             MediaEntityBuilder.createScreenCaptureFromPath(pngFile.absolutePath, if (failure) "Test failed" else null)
                 .build()
-        val node = ReportContext.testNodes[testCase]!!
+
         if (failure) {
             node.fail(description, media)
         } else {
@@ -37,7 +47,12 @@ class AlkemyReport(
     }
 
     fun screenshotFailure(testCase: TestCase, testResult: TestResult) {
-        screenshot(testCase, testResult.errorOrNull?.message, true)
+        val node = ReportContext.testNodes[testCase]
+        screenshotFailure(node, testCase, testResult)
+    }
+
+    private fun screenshotFailure(node: ExtentTest?, testCase: TestCase, testResult: TestResult) {
+        screenshot(node, testCase, testResult.errorOrNull?.message, true)
     }
 
     override suspend fun beforeAny(testCase: TestCase) {
@@ -45,10 +60,14 @@ class AlkemyReport(
     }
 
     override suspend fun afterAny(testCase: TestCase, result: TestResult) {
-        val extentNode = ReportContext.testNodes[testCase]!!
+        val extentNode = ReportContext.testNodes[testCase]
 
         if (result.isErrorOrFailure) {
-            screenshotFailure(testCase, result)
+            screenshotFailure(extentNode, testCase, result)
+        }
+
+        if (extentNode == null) { // if auto-scan is disabled and ReportContext is not registered
+            return
         }
 
         if (result.isSuccess) {
