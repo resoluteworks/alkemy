@@ -8,7 +8,7 @@ import org.openqa.selenium.By
 import org.openqa.selenium.TimeoutException
 
 class AssertionsWebdriverTest : StringSpec({
-    val context = installAlkemyExtension()
+    val context = defaultAlkemyContext()
 
     "shouldHaveText" {
         context.get("/hovers") shouldHaveText "Hover over the image for additional information"

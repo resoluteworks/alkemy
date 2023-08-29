@@ -2,7 +2,7 @@ package io.alkemy.spring.examples
 
 import io.alkemy.config.AlkemyConfig
 import io.alkemy.spring.AlkemyProperties
-import io.alkemy.spring.Extensions.installAlkemyExtension
+import io.alkemy.spring.Extensions.alkemyContext
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.equals.shouldBeEqual
 import org.springframework.boot.test.context.SpringBootTest
@@ -11,7 +11,7 @@ import org.springframework.boot.test.web.server.LocalServerPort
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 class CustomConfig(alkemyProperties: AlkemyProperties, @LocalServerPort serverPort: Int) : StringSpec({
-    val alkemyContext = installAlkemyExtension(
+    val alkemyContext = alkemyContext(
         alkemyProperties.copy(
             baseUrl = "http://localhost:${serverPort}",
         )

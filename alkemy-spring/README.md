@@ -16,7 +16,7 @@ Autowire `AlkemyProperties` in the constructor together with other Spring beans,
 
 ```kotlin
 class MySpec(alkemyProperties: AlkemyProperties, service: UserService) : WordSpec({
-    val alkemyContext = installAlkemyExtension(alkemyProperties)
+    val alkemyContext = alkemyContext(alkemyProperties)
 ```
 
 Configure Alkemy using Spring configuration properties, e.g.
@@ -38,7 +38,7 @@ For example, to configure `alkemy.base-url` with the webserver port that was ran
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 class DynamicConfigurationTest(alkemyProperties: AlkemyProperties, @LocalServerPort serverPort: Int) : WordSpec() {
     init {
-        val alkemyContext = installAlkemyExtension(
+        val alkemyContext = alkemyContext(
             alkemyProperties.copy(
                 baseUrl = "http://localhost:${serverPort}",
             )
@@ -48,10 +48,11 @@ class DynamicConfigurationTest(alkemyProperties: AlkemyProperties, @LocalServerP
 ## Disabling Kotest Auto Scan
 
 If Kotest [auto scan](https://kotest.io/docs/framework/project-config.html#runtime-detection) is disabled, you will need
-to manually load the `SpringAutowireConstructorExtension` extension in your Project config, e.g.
+to manually load the `AlkemyWebDriverPoolExtension` and `SpringAutowireConstructorExtension` extension in your Project
+config, e.g.
 
 ```kotlin
 class ProjectConfig : AbstractProjectConfig() {
-    override fun extensions() = listOf(SpringAutowireConstructorExtension)
+    override fun extensions() = listOf(AlkemyWebDriverPoolExtension, SpringAutowireConstructorExtension)
 }
 ```

@@ -9,23 +9,21 @@ import io.kotest.core.spec.Spec
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-fun Spec.installAlkemyExtension(
-    config: AlkemyConfig = AlkemyConfig.fromSystemProperties(),
-    pooled: Boolean = true,
-) = install(AlkemyExtension(this, config, pooled))
+fun Spec.defaultAlkemyContext() = install(AlkemyExtension(this, AlkemyConfig.fromSystemProperties()))
+
+fun Spec.customAlkemyContext(config: AlkemyConfig) = install(AlkemyExtension(this, config))
 
 class AlkemyExtension(
     private val testConfiguration: TestConfiguration,
     private val config: AlkemyConfig,
-    private val pooled: Boolean,
 ) : MountableExtension<AlkemyConfig, AlkemyContext>, AfterSpecListener {
     private var context: AlkemyContext? = null
 
     override fun mount(configure: AlkemyConfig.() -> Unit): AlkemyContext {
         config.configure()
 
-        val context = if (pooled)
-            AlkemyContext.PooledDrivers(config)
+        val context = if (AlkemyWebDriverPoolExtension.isInitialized())
+            AlkemyContext.PooledDrivers(config, AlkemyWebDriverPoolExtension.webDriverPool)
         else
             AlkemyContext.NewDriver(config)
 

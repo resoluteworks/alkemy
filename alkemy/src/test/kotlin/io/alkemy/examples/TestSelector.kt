@@ -1,7 +1,7 @@
 package io.alkemy.examples
 
 import io.alkemy.config.AlkemyConfig
-import io.alkemy.installAlkemyExtension
+import io.alkemy.customAlkemyContext
 import io.alkemy.withMockRequest
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
@@ -16,9 +16,8 @@ class TestSelector : StringSpec({
         """
 
     withMockRequest(responseBody) { baseUrl ->
-        val context = installAlkemyExtension(
+        val context = customAlkemyContext(
             AlkemyConfig(baseUrl = baseUrl),
-            false,
         )
 
         "test selector attribute" {

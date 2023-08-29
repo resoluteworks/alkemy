@@ -2,15 +2,15 @@ package io.alkemy.examples
 
 import io.alkemy.AlkemyContext
 import io.alkemy.assertions.shouldHaveText
+import io.alkemy.defaultAlkemyContext
 import io.alkemy.extensions.submit
 import io.alkemy.extensions.typeInInput
-import io.alkemy.installAlkemyExtension
 import io.alkemy.pom.Page
 import io.kotest.core.spec.style.StringSpec
 
 class PomLoginTest : StringSpec() {
     init {
-        val context = installAlkemyExtension()
+        val context = defaultAlkemyContext()
 
         "login" {
             val securePage = context

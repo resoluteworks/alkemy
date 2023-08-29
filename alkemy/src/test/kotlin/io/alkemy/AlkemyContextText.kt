@@ -7,7 +7,7 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
 class AlkemyContextText : StringSpec({
-    val context = installAlkemyExtension()
+    val context = defaultAlkemyContext()
 
     "clearText" {
         context.apply {

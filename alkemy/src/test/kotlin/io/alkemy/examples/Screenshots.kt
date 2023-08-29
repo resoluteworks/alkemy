@@ -1,15 +1,15 @@
 package io.alkemy.examples
 
 import io.alkemy.assertions.shouldHaveText
+import io.alkemy.defaultAlkemyContext
 import io.alkemy.extensions.screenshot
 import io.alkemy.extensions.submit
 import io.alkemy.extensions.typeInInput
-import io.alkemy.installAlkemyExtension
 import io.kotest.core.spec.style.StringSpec
 
 class Screenshots : StringSpec() {
     init {
-        val context = installAlkemyExtension()
+        val context = defaultAlkemyContext()
 
         "take screenshot" {
             val report = context.report

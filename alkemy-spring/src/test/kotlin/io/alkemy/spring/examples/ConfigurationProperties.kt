@@ -2,14 +2,14 @@ package io.alkemy.spring.examples
 
 import io.alkemy.config.AlkemyConfig
 import io.alkemy.spring.AlkemyProperties
-import io.alkemy.spring.Extensions.installAlkemyExtension
+import io.alkemy.spring.Extensions.alkemyContext
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.equals.shouldBeEqual
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
 class ConfigurationProperties(alkemyProperties: AlkemyProperties) : StringSpec({
-    val alkemyContext = installAlkemyExtension(alkemyProperties)
+    val alkemyContext = alkemyContext(alkemyProperties)
 
     "configure Alkemy using Spring Configuration Properties" {
         alkemyContext.config.apply {

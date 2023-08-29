@@ -5,7 +5,7 @@ import io.kotest.core.extensions.install
 import io.kotest.core.spec.Spec
 
 object Extensions {
-    fun Spec.installAlkemyExtension(
+    fun Spec.alkemyContext(
         properties: AlkemyProperties,
-    ) = install(AlkemyExtension(this, properties.toAlkemyConfig(), properties.pooled))
+    ) = install(AlkemyExtension(this, properties.toAlkemyConfig()))
 }

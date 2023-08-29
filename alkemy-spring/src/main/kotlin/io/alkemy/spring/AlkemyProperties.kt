@@ -9,7 +9,6 @@ import org.springframework.boot.context.properties.ConstructorBinding
 @ConstructorBinding
 data class AlkemyProperties(
     val baseUrl: String?,
-    val pooled: Boolean = true,
     val browser: Browser = AlkemyConfig.DEFAULT_BROWSER,
     val incognito: Boolean = AlkemyConfig.DEFAULT_INCOGNITO,
     val maximize: Boolean = AlkemyConfig.DEFAULT_MAXIMIZE,

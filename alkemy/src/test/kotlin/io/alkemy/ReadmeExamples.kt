@@ -11,7 +11,7 @@ import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.string.shouldContain
 
 class ReadmeExamples : StringSpec({
-    val context = installAlkemyExtension()
+    val context = defaultAlkemyContext()
 
     "string selectors and assertions" {
         // To use String extensions the context.apply{} construct is required

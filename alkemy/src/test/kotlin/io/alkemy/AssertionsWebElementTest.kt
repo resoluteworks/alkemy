@@ -8,7 +8,7 @@ import io.kotest.core.spec.style.StringSpec
 import org.openqa.selenium.TimeoutException
 
 class AssertionsWebElementTest : StringSpec({
-    val context = installAlkemyExtension()
+    val context = defaultAlkemyContext()
 
     "shouldHaveText" {
         context.get("/hovers").find("body") shouldHaveText "Hover over the image for additional information"
