@@ -7,3 +7,4 @@ Play.kt
 .DS_Store
 chromedriver
 local-test.sh
+docs/dokka

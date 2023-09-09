@@ -42,11 +42,6 @@ tasks.jacocoTestReport {
     }
 }
 
-//signing {
-//    required { !version.toString().contains("-dev-experimental") && gradle.taskGraph.hasTask("publish") }
-//    sign(publishing.publications.mavenJava)
-//}
-
 tasks.withType<PublishToMavenRepository> {
     dependsOn("test")
 }
@@ -56,13 +51,13 @@ publishing {
 
     repositories {
         mavenLocal()
-        maven {
-            url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-            credentials {
-                username = System.getenv("NEXUS_USERNAME")
-                password = System.getenv("NEXUS_PASSWORD")
-            }
-        }
+//        maven {
+//            url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+//            credentials {
+//                username = System.getenv("NEXUS_USERNAME")
+//                password = System.getenv("NEXUS_PASSWORD")
+//            }
+//        }
     }
 
     publications {
@@ -92,4 +87,8 @@ publishing {
             }
         }
     }
+}
+
+signing {
+    sign(publishing.publications["mavenJava"])
 }
