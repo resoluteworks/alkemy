@@ -29,8 +29,3 @@ coverallsJacoco {
 tasks.coverallsJacoco {
     mustRunAfter('testCodeCoverageReport')
 }
-
-tasks.register('fullBuild') {
-    dependsOn 'testCodeCoverageReport'
-    dependsOn 'coverallsJacoco'
-}
