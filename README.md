@@ -17,9 +17,10 @@ The objective is to provide more fluent definitions for Selenium tests, using a 
 
 ## Documentation
 * [Reference documentation](https://github.com/cosmin-marginean/alkemy/wiki)
-* [Various test examples](https://github.com/cosmin-marginean/alkemy/tree/main/src/test/kotlin/io/alkemy/examples)
+* [Various test examples](https://github.com/cosmin-marginean/alkemy/tree/main/alkemy/src/test/kotlin/io/alkemy/examples)
 * [Full working project setup](https://github.com/cosmin-marginean/alkemy/tree/main/sample-project)
 * [Spring boot integration](alkemy-spring/README.md)
+* [API Docs]()
 
 ## Dependency
 ```groovy
