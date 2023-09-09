@@ -9,12 +9,7 @@ rm -rf docs/dokka
 export COVERALLS_REPO_TOKEN="${COVERALLS_REPO_TOKEN_ALKEMY}"
 ./gradlew clean fullBuild dokkaHtml publish
 
-git add --all
-git commit -am "Release $VERSION"
-git push
-git tag "${VERSION}"
+git tag "v${VERSION}" -m "Release v${VERSION}"
 git push --tags --force
-
-gh release create "${VERSION}" --verify-tag --title "Alkemy ${VERSION}" --notes "Version ${VERSION}"
 
 echo "Finished building version $VERSION"
