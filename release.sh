@@ -7,7 +7,7 @@ echo "Version is $VERSION"
 
 rm -rf docs/dokka
 export COVERALLS_REPO_TOKEN="${COVERALLS_REPO_TOKEN_ALKEMY}"
-./gradlew clean dokkaHtml publish
+./gradlew clean codeCoverage publish
 
 git tag "v${VERSION}" -m "Release v${VERSION}"
 git push --tags --force
