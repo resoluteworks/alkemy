@@ -20,7 +20,8 @@ The objective is to provide more fluent definitions for Selenium tests, using a 
 * [Various test examples](https://github.com/cosmin-marginean/alkemy/tree/main/alkemy/src/test/kotlin/io/alkemy/examples)
 * [Full working project setup](https://github.com/cosmin-marginean/alkemy/tree/main/sample-project)
 * [Spring boot integration](alkemy-spring/README.md)
-* [API Docs]()
+* [API Docs - Alkemy core](https://cosmin-marginean.github.io/alkemy/alkemy/)
+* [API Docs - Alkemy Spring](https://cosmin-marginean.github.io/alkemy/alkemy-spring/)
 
 ## Dependency
 ```groovy
