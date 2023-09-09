@@ -29,13 +29,10 @@ sealed class AlkemyContext(
         }
     }
 
-    class PooledDrivers(config: AlkemyConfig) : AlkemyContext(config) {
-        private val webDriverPool = WebDriverPool()
+    class PooledDrivers(config: AlkemyConfig, private val webDriverPool: WebDriverPool) : AlkemyContext(config) {
         override val webDriver: WebDriver get() = webDriverPool.getDriver(config)
 
-        override fun close() {
-            webDriverPool.close()
-        }
+        override fun close() {}
     }
 
     val report: AlkemyReport = AlkemyReport(this)
@@ -126,12 +123,4 @@ sealed class AlkemyContext(
         get() {
             return webDriver.find(this).text
         }
-}
-
-fun AlkemyContext.use(block: AlkemyContext.() -> Unit) {
-    try {
-        this.block()
-    } finally {
-        this.webDriver.close()
-    }
 }

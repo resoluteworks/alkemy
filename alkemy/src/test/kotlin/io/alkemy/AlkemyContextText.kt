@@ -6,7 +6,8 @@ import io.alkemy.extensions.value
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
-class AlkemyContextText(val context: AlkemyContext) : StringSpec({
+class AlkemyContextText : StringSpec({
+    val context = defaultAlkemyContext()
 
     "clearText" {
         context.apply {

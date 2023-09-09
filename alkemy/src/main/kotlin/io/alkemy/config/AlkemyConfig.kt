@@ -35,8 +35,8 @@ data class AlkemyConfig(
         const val DEFAULT_IMPLICIT_WAIT_MS = 5000L
         const val DEFAULT_TEST_SELECTOR_ATTRIBUTE = "data-test-selector"
 
-        fun fromSystemProperties(): AlkemyConfig {
-            return AlkemyConfig(
+        private val fromSystemProperties: AlkemyConfig by lazy {
+            AlkemyConfig(
                 baseUrl = System.getProperty("alkemy.baseUrl"),
                 browser = enumSysProp("alkemy.browser", DEFAULT_BROWSER),
                 incognito = sysProp("alkemy.incognito", DEFAULT_INCOGNITO),
@@ -47,6 +47,10 @@ data class AlkemyConfig(
                 implicitWaitMs = sysProp("alkemy.implicitWaitMs", DEFAULT_IMPLICIT_WAIT_MS),
                 testSelectorAttribute = sysProp("alkemy.testSelectorAttribute", DEFAULT_TEST_SELECTOR_ATTRIBUTE)
             )
+        }
+
+        fun fromSystemProperties(): AlkemyConfig {
+            return fromSystemProperties
         }
     }
 }
