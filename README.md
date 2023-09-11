@@ -34,45 +34,6 @@ class MyTest : StringSpec({
     val context = defaultAlkemyContext()
 ```
 
-## Custom Alkemy Config
-
-Example to customize the Alkemy config for a Spec:
-
-```kotlin
-class MyTest : StringSpec({
-    val context = customAlkemyContext(
-        AlkemyConfig(baseUrl = baseUrl),
-    )
-})
-```
-
-To customize the default Alkemy config for a Spec, use `AlkemyConfig`'s copy constructor to overwrite any properties,
-e.g.
-
-```kotlin
-class MyTest : StringSpec({
-    val context = customAlkemyContext(
-        AlkemyConfig.fromSystemProperties().copy(
-            browser = Browser.FIREFOX,
-            headless = true,
-            windowWidth = 800,
-            windowHeight = 600,
-        ),
-    )
-})
-```
-
-## Disabling Kotest Auto Scan
-
-If Kotest [auto scan](https://kotest.io/docs/framework/project-config.html#runtime-detection) is disabled, to enable
-pooling, you will need to manually load the `AlkemyWebDriverPoolExtension` extension in your Project config, e.g.
-
-```kotlin
-class ProjectConfig : AbstractProjectConfig() {
-    override fun extensions() = listOf(AlkemyWebDriverPoolExtension)
-}
-```
-
 ## String selectors
 A set of extensions functions can be used against `String` to perform lookups and assertions.
 ```kotlin
@@ -164,6 +125,46 @@ Any Kotest assertions can be used natively in combination with the Alkemy or Sel
         driver.find("h2").text shouldContain "Login Page"
     }
 ```
+
+## Custom Alkemy Config
+
+Example to customize the Alkemy config for a Spec:
+
+```kotlin
+class MyTest : StringSpec({
+    val context = customAlkemyContext(
+        AlkemyConfig(baseUrl = baseUrl),
+    )
+})
+```
+
+To customize the default Alkemy config for a Spec, use `AlkemyConfig`'s copy constructor to overwrite any properties,
+e.g.
+
+```kotlin
+class MyTest : StringSpec({
+    val context = customAlkemyContext(
+        AlkemyConfig.fromSystemProperties().copy(
+            browser = Browser.FIREFOX,
+            headless = true,
+            windowWidth = 800,
+            windowHeight = 600,
+        ),
+    )
+})
+```
+
+## Disabling Kotest Auto Scan
+
+If Kotest [auto scan](https://kotest.io/docs/framework/project-config.html#runtime-detection) is disabled, to enable
+pooling, you will need to manually load the `AlkemyWebDriverPoolExtension` extension in your Project config, e.g.
+
+```kotlin
+class ProjectConfig : AbstractProjectConfig() {
+    override fun extensions() = listOf(AlkemyWebDriverPoolExtension)
+}
+```
+
 
 ## Documentation
 See [Documentation](https://github.com/cosmin-marginean/alkemy/wiki) for further information.
