@@ -5,6 +5,8 @@ import io.kotest.core.test.TestCase
 import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
+import org.openqa.selenium.support.ui.WebDriverWait
+import java.time.Duration
 
 fun WebDriver.typeIn(cssSelector: String, text: String): WebDriver {
     find(cssSelector).sendKeys(text)
@@ -66,3 +68,8 @@ fun WebDriver.screenshot(context: AlkemyContext, testCase: TestCase): WebDriver 
     return this
 }
 
+fun WebDriver.wait(maxWaitSeconds: Int = 5, until: () -> Boolean) {
+    WebDriverWait(this, Duration.ofSeconds(maxWaitSeconds.toLong())).until {
+        until()
+    }
+}

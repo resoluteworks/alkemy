@@ -17,6 +17,18 @@ class ExtensionsWebDriverTest : StringSpec({
         }
     }
 
+    "wait" {
+        val driver = context.get("/dynamic_controls")
+
+        val form = driver.find("#input-example")
+        val button = form.find("button")
+
+        button.clickElement()
+        driver.wait(10) {
+            button.isEnabled
+        }
+    }
+
     "clearText" {
         context.apply {
             get("/login")
