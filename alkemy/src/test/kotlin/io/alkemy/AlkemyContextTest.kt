@@ -1,5 +1,6 @@
 package io.alkemy
 
+import io.alkemy.assertions.shouldHaveText
 import io.alkemy.extensions.find
 import io.alkemy.extensions.typeInInput
 import io.alkemy.extensions.value
@@ -92,5 +93,9 @@ class AlkemyContextTest : StringSpec({
             "#input-example input[type='text']" shouldBeEnabled 10
             "#input-example #loading".shouldBeHidden()
         }
+    }
+
+    "get absolute" {
+        context.getAbsolute("https://the-internet.herokuapp.com") shouldHaveText "Welcome to the-internet"
     }
 })

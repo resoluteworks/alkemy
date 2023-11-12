@@ -42,6 +42,11 @@ sealed class AlkemyContext(
         return webDriver
     }
 
+    fun getAbsolute(absoluteUrl: String): WebDriver {
+        webDriver.get(absoluteUrl)
+        return webDriver
+    }
+
     inline fun <reified P : Page> goTo(): P {
         val page = P::class.primaryConstructor!!.call(this)
         get(page.relativeUrl)
