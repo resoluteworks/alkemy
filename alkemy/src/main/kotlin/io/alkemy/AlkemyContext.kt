@@ -9,9 +9,11 @@ import io.alkemy.extensions.typeIn
 import io.alkemy.extensions.value
 import io.alkemy.pom.Page
 import io.alkemy.reports.AlkemyReport
+import org.awaitility.kotlin.await
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import java.io.Closeable
+import java.util.concurrent.TimeUnit
 import kotlin.reflect.full.primaryConstructor
 
 sealed class AlkemyContext(
@@ -31,11 +33,30 @@ sealed class AlkemyContext(
 
     class PooledDrivers(config: AlkemyConfig, private val webDriverPool: WebDriverPool) : AlkemyContext(config) {
         override val webDriver: WebDriver get() = webDriverPool.getDriver(config)
+        override fun close() {}
+    }
 
+    /**
+     * This is used to copy the webdriver from the current thread to a new thread. Used mainly for waiting conditions
+     */
+    class CopyDriver(private val context: AlkemyContext) : AlkemyContext(context.config) {
+        override val webDriver: WebDriver get() = context.webDriver
         override fun close() {}
     }
 
     val report: AlkemyReport = AlkemyReport(this)
+
+    /**
+     * Wait with polling on a separate thread.
+     */
+    fun wait(seconds: Int = 5, pollIntervalMs: Int = 100, condition: (AlkemyContext) -> Boolean) {
+        val copyDriver = CopyDriver(this)
+        await.atMost(seconds.toLong(), TimeUnit.SECONDS)
+            .pollInterval(pollIntervalMs.toLong(), TimeUnit.MILLISECONDS)
+            .until {
+                condition(copyDriver)
+            }
+    }
 
     fun get(relativeUrl: String): WebDriver {
         webDriver.get(config.baseUrl + relativeUrl)

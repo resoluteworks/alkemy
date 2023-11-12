@@ -18,6 +18,7 @@ dependencies {
     implementation("org.seleniumhq.selenium:selenium-support:${project.properties["seleniumVersion"]}")
     implementation("org.slf4j:slf4j-api:1.7.36")
     implementation("com.aventstack:extentreports:5.0.9")
+    implementation("org.awaitility:awaitility-kotlin:4.2.0")
 
     testImplementation("ch.qos.logback:logback-classic:1.3.7")
     testImplementation("com.squareup.okhttp3:mockwebserver:4.10.0")

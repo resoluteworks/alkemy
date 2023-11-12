@@ -1,6 +1,7 @@
 package io.alkemy
 
 import io.alkemy.assertions.shouldHaveText
+import io.alkemy.extensions.clickElement
 import io.alkemy.extensions.find
 import io.alkemy.extensions.typeInInput
 import io.alkemy.extensions.value
@@ -97,5 +98,17 @@ class AlkemyContextTest : StringSpec({
 
     "get absolute" {
         context.getAbsolute("https://the-internet.herokuapp.com") shouldHaveText "Welcome to the-internet"
+    }
+
+    "wait" {
+        val driver = context.get("/dynamic_controls")
+
+        val form = driver.find("#input-example")
+        val button = form.find("button")
+
+        button.clickElement()
+        context.wait(seconds = 10) {
+            button.isEnabled
+        }
     }
 })
