@@ -39,8 +39,9 @@ sealed class AlkemyContext(
     /**
      * This is used to copy the webdriver from the current thread to a new thread. Used mainly for waiting conditions
      */
-    class CopyDriver(private val context: AlkemyContext) : AlkemyContext(context.config) {
-        override val webDriver: WebDriver get() = context.webDriver
+    class CopyDriver(context: AlkemyContext) : AlkemyContext(context.config) {
+        private val driver = context.webDriver
+        override val webDriver: WebDriver get() = driver
         override fun close() {}
     }
 
