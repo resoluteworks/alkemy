@@ -9,7 +9,7 @@ rm -rf docs/dokka
 export COVERALLS_REPO_TOKEN="${COVERALLS_REPO_TOKEN_ALKEMY}"
 ./gradlew clean codeCoverage publish
 
-git tag "v${VERSION}" -m "Release v${VERSION}"
-git push --tags --force
+#git tag "v${VERSION}" -m "Release v${VERSION}"
+#git push --tags --force
 
-echo "Finished building version $VERSION"
+#echo "Finished building version $VERSION"
