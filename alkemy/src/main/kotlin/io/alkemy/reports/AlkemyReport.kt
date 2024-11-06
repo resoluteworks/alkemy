@@ -11,7 +11,6 @@ import io.kotest.core.test.TestResult
 import org.openqa.selenium.OutputType
 import org.openqa.selenium.TakesScreenshot
 import java.nio.file.Paths
-import kotlin.io.path.absolutePathString
 import kotlin.io.path.createDirectories
 import kotlin.io.path.writeBytes
 
@@ -38,8 +37,11 @@ class AlkemyReport(
             return
         }
 
+        // use relative paths to screenshots in report
+        // we need to prepend ./ for img.src to look for the path relative to the file, not the server root
+        val relativePngFilePath = "./${Paths.get(ReportConfig.htmlReportFile).parent.relativize(pngFile)}"
         val media =
-            MediaEntityBuilder.createScreenCaptureFromPath(pngFile.absolutePathString(), if (failure) "Test failed" else null)
+            MediaEntityBuilder.createScreenCaptureFromPath(relativePngFilePath, if (failure) "Test failed" else null)
                 .build()
 
         if (failure) {
