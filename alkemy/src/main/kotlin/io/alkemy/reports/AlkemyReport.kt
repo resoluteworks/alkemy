@@ -10,7 +10,10 @@ import io.kotest.core.test.TestCase
 import io.kotest.core.test.TestResult
 import org.openqa.selenium.OutputType
 import org.openqa.selenium.TakesScreenshot
-import java.io.File
+import java.nio.file.Paths
+import kotlin.io.path.absolutePathString
+import kotlin.io.path.createDirectories
+import kotlin.io.path.writeBytes
 
 class AlkemyReport(
     private val context: AlkemyContext
@@ -23,10 +26,10 @@ class AlkemyReport(
 
     private fun screenshot(node: ExtentTest?, testCase: TestCase, description: String? = null, failure: Boolean = false) {
         val clsName = testCase.spec::class.simpleName!!
-        val parentDir = File(ReportConfig.screenshotDir, clsName)
-        parentDir.mkdirs()
-        val fileName = testCase.name.testName.replace(" ", "-") + "-" + System.currentTimeMillis() + ".png"
-        val pngFile = File(parentDir, fileName)
+        val parentDir = Paths.get(ReportConfig.screenshotDir, clsName)
+        parentDir.createDirectories()
+        val fileName = "${testCase.name.testName.replace(" ", "-")}-${System.currentTimeMillis()}.png"
+        val pngFile = parentDir.resolve(fileName)
 
         val bytes = (context.webDriver as TakesScreenshot).getScreenshotAs(OutputType.BYTES)
         pngFile.writeBytes(bytes)
@@ -36,7 +39,7 @@ class AlkemyReport(
         }
 
         val media =
-            MediaEntityBuilder.createScreenCaptureFromPath(pngFile.absolutePath, if (failure) "Test failed" else null)
+            MediaEntityBuilder.createScreenCaptureFromPath(pngFile.absolutePathString(), if (failure) "Test failed" else null)
                 .build()
 
         if (failure) {
