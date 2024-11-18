@@ -2,6 +2,7 @@ plugins {
     id("jacoco-report-aggregation")
     id("com.glovoapp.semantic-versioning") version "1.1.10"
     id("com.github.nbaztec.coveralls-jacoco") version "1.2.16"
+    id("com.gradleup.nmcp")
 }
 
 repositories {

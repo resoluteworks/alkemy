@@ -1,3 +1,5 @@
+import org.gradle.internal.impldep.org.bouncycastle.cms.RecipientId.password
+
 plugins {
     id("java-library")
     kotlin("jvm")
@@ -5,6 +7,7 @@ plugins {
     id("signing")
     id("org.jetbrains.dokka")
     id("jacoco")
+    id("com.gradleup.nmcp")
 }
 
 group = "io.resoluteworks"
@@ -51,13 +54,6 @@ publishing {
 
     repositories {
         mavenLocal()
-        maven {
-            url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-            credentials {
-                username = System.getenv("NEXUS_USERNAME")
-                password = System.getenv("NEXUS_PASSWORD")
-            }
-        }
     }
 
     publications {
@@ -91,4 +87,12 @@ publishing {
 
 signing {
     sign(publishing.publications["mavenJava"])
+}
+
+nmcp {
+    publish("mavenJava") {
+        username = System.getenv("SONATYPE_PUBLISH_USERNAME")
+        password = System.getenv("SONATYPE_PUBLISH_PASSWORD")
+        publicationType = "AUTOMATIC"
+    }
 }
