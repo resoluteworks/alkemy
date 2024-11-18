@@ -1,5 +1,3 @@
-import org.gradle.internal.impldep.org.bouncycastle.cms.RecipientId.password
-
 plugins {
     id("java-library")
     kotlin("jvm")
